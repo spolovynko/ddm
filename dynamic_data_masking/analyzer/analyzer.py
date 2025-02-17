@@ -2,6 +2,7 @@ from analyzer.analyzer_engine_builder import PresidioAnalyzerBuilder
 from analyzer.analyzer_engine_director import PresidioAnalyzerDirector
 
 class DynamicDataMaskingAnalyzer:
+    
     def __init__(self, language="en", use_predefined=False):
         self.language = language
         self.use_predefined = use_predefined
