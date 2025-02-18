@@ -1,0 +1,175 @@
+supported_languages: 
+- en
+- fr
+- nl
+
+default_score_threshold: 0.5
+
+nlp_configuration:
+  nlp_engine_name: spacy
+  models:
+  -
+    lang_code: en
+    model_name: en_core_web_sm
+  -
+    lang_code: fr
+    model_name: fr_core_news_md
+  -
+    lang_code: nl
+    model_name: nl_core_news_sm
+  
+  ner_model_configuration:
+    model_to_presidio_entity_mapping:
+      PER: PERSON
+      PERSON: PERSON
+      LOC: LOCATION
+      LOCATION: LOCATION
+      GPE: LOCATION
+      ORG: ORGANIZATION
+      DATE: DATE_TIME
+      TIME: DATE_TIME
+      NORP: NRP
+      # MISC: SENSITIVE
+
+    low_confidence_score_multiplier: 0.5
+
+recognizer_registry:
+  global_regex_flags: 26
+
+  recognizers: 
+
+  - name: 'BelgianIdRecognizer'
+    supported_languages: 
+    - en
+    - fr
+    - nl
+    patterns:
+    - 
+      name: 'belgian id'
+      regex: '\d{2}\.\d{2}\.\d{2}-\d{3}\.\d{2}'
+      score: 0.01
+    context: [id]
+    supported_entity: 'BELGIAN_ID'
+  
+  - name: 'BelgianBankNumber'
+    supported_languages: 
+    - en
+    - fr
+    - nl
+    patterns:
+    - 
+      name: 'belgian iban'
+      regex: 'BE\d{2}(?:\s?\d{4}){3}'
+      score: 0.01
+    context: [bank]
+    supported_entity: 'BE_IBAN'
+
+  - name: 'PhoneNumberRecogizerBe'
+    supported_languages: 
+    - en
+    - fr
+    - nl
+    patterns:
+    - 
+      name: 'phone_number'
+      regex: (?:\+?\d{1,4}[-.\s/]?)?\d{1,4}[-.\s/]?\d{1,4}(?:[-.\s/]\d{1,4}){1,3}  
+      score: 0.01
+    context: [bank]
+    supported_entity: 'SENSITIVE_NUMERICAL'
+
+  - name: 'EmailRecognizer'
+    supported_languages: 
+    - en
+    - fr
+    - nl
+    patterns:
+    - 
+      name: 'email'
+      regex: '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+      score: 0.01
+    context: [email]
+    supported_entity: 'EMAIL'
+
+  - name: 'HealthRecognizerEn'
+    supported_language: 'en'
+    supported_entity: 'HEALTH'
+    deny_list: [diabète, hypertension, Allergie, retard, mentale, Amlodipine, handicapé]
+    deny_list_score: 1
+
+  - name: 'HealthRecognizerFr'
+    supported_language: 'fr'
+    supported_entity: 'HEALTH'
+    deny_list: [diabète, hypertension, Allergie, retard, mentale, Amlodipine, handicapé]
+    deny_list_score: 1
+
+  - name: 'HealthRecognizerNl'
+    supported_language: 'nl'
+    supported_entity: 'HEALTH'
+    deny_list: [Levothyroxine, schildklierproblemen, schildklieraandoeningen,Metformine,diabetes,type]
+    deny_list_score: 1
+
+  - name: 'ReligionRecognizerFr'
+    supported_language: 'fr'
+    supported_entity: 'RELIGION'
+    deny_list: [catholicisme, messes,Catholique]
+    deny_list_score: 1
+
+  - name: 'ReligionRecognizerNl'
+    supported_language: 'nl'
+    supported_entity: 'RELIGION'
+    deny_list: [Katholiek]
+    deny_list_score: 1
+  
+  - name: 'SexualityRecognizerFr'
+    supported_language: 'fr'
+    supported_entity: 'SEXUALITY'
+    deny_list: [hétérosexuel, Hétérosexuelle,tombée amoureuse]
+    deny_list_score: 1
+
+  - name: 'SexualityRecognizerNl'
+    supported_language: 'nl'
+    supported_entity: 'SEXUALITY'
+    deny_list: [Heteroseksueel]
+    deny_list_score: 1
+
+  - name: 'EthnicityRecognizerNl'
+    supported_language: 'nl'
+    supported_entity: 'ETHNICITY'
+    deny_list: [blanke huidkleur]
+    deny_list_score: 1
+
+  - name: 'ProfessionRecognizerNl'
+    supported_language: 'fr'
+    supported_entity: 'PROFESSION'
+    deny_list: [Ingénieur]
+    deny_list_score: 1
+
+  - name: 'ProfessionRecognizerNl'
+    supported_language: 'nl'
+    supported_entity: 'PROFESSION'
+    deny_list: [Huisvrouw,  Marketing, Specialist, Softwareontwikkelaar]
+    deny_list_score: 1
+
+  - name: 'PoliticalRecognizerNl'
+    supported_language: 'fr'
+    supported_entity: 'POLITICS'
+    deny_list: [Ecolo, écologistes,  énergies, renouvelables]
+    deny_list_score: 1
+
+  - name: 'PoliticalRecognizerNl'
+    supported_language: 'nl'
+    supported_entity: 'POLITICS'
+    deny_list: [Liberale, Vakbond, ACLVB,ACV]
+    deny_list_score: 1
+
+  - name: 'OrganisationRecognizerFr'
+    supported_language: 'fr'
+    supported_entity: 'ORGANISATION'
+    deny_list: [Belfius, Fortis,BNP, Paribas]
+    deny_list_score: 1
+
+  - name: 'OrganisationRecognizerNl'
+    supported_language: 'nl'
+    supported_entity: 'ORGANISATION'
+    deny_list: [OX, Cleaning, Systems,Belfius,BNP, Paribas]
+    deny_list_score: 1

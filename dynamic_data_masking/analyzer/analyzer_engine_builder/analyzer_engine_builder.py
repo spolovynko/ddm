@@ -1,9 +1,33 @@
 # analyzer_engine_builder.py
+from abc import ABC
 
-from presidio_analyzer import AnalyzerEngine
+from presidio_analyzer import AnalyzerEngine, AnalyzerEngineProvider
 from presidio_analyzer.nlp_engine import NlpEngineProvider
 
-class PresidioAnalyzerBuilder:
+class PresidioAnalyzer(ABC):
+
+    def build_analyzer(self):
+        raise NotImplementedError
+
+class PresidioAnalyzerEngineProviderBuilder(PresidioAnalyzer):
+
+    def __init__(self):
+        self.presidio_config_file = None
+
+    def set_config_file(self, path):
+        self.presidio_config_file = path
+        return self
+
+    def build_analyzer(self):
+        if not self.presidio_config_file:
+            raise ValueError('NLP Engine not configured. Call set_config_file() first.')
+        provider = AnalyzerEngineProvider(
+            analyzer_engine_conf_file=self.presidio_config_file
+        )
+        analyzer = provider.create_engine()
+        return analyzer
+
+class PresidioAnalyzerBuilder(PresidioAnalyzer):
     def __init__(self, language):
         self.language = language
         self.nlp_engine = None
