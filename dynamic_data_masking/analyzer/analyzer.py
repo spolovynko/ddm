@@ -1,5 +1,5 @@
-from analyzer.analyzer_engine_builder import PresidioAnalyzerBuilder, PresidioAnalyzerEngineProviderBuilder
-from analyzer.analyzer_engine_director import PresidioAnalyzerDirector
+from dynamic_data_masking.analyzer.analyzer_engine_builder import PresidioAnalyzerBuilder, PresidioAnalyzerEngineProviderBuilder
+from dynamic_data_masking.analyzer.analyzer_engine_director import PresidioAnalyzerDirector
 
 class DynamicDataMaskingAnalyzer:
     

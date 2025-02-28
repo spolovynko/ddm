@@ -1,0 +1,2 @@
+install tesseract OCR-> pytesseract
+provide poppler -> pdf2image

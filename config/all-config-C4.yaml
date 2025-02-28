@@ -90,6 +90,12 @@ recognizer_registry:
     context: [email]
     supported_entity: 'EMAIL'
 
+  - name: 'GreetRecognizerEn'
+    supported_language: 'en'
+    supported_entity: 'GREET'
+    deny_list: ['Hello']
+    deny_list_score: 1
+
   - name: 'HealthRecognizerEn'
     supported_language: 'en'
     supported_entity: 'HEALTH'

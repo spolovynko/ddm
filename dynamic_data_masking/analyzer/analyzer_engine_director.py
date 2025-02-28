@@ -1,8 +1,8 @@
-from .analyzer_engine_builder.recognizer_registry import RegistryRecognizerBuilder
-from .analyzer_engine_builder.nlp_configuration import NLP_CONFIGURATIONS
-from .analyzer_engine_builder.recognizers import RECOGNIZERS
+from dynamic_data_masking.analyzer.analyzer_engine_builder.recognizer_registry import RegistryRecognizerBuilder
+from dynamic_data_masking.analyzer.analyzer_engine_builder.nlp_configuration import NLP_CONFIGURATIONS
+from dynamic_data_masking.analyzer.analyzer_engine_builder.recognizers import RECOGNIZERS
 
-from config_reader import config
+from dynamic_data_masking.config_reader import config
 
 
 class PresidioAnalyzerDirector:
