@@ -3,7 +3,6 @@ from reportlab.pdfgen import canvas
 from dynamic_data_masking.file_redactor.redactor.base_redactor import RedactionStrategy
 
 class BlackoutRedaction(RedactionStrategy):
-    """Redacts words by overlaying a black box over them."""
     def apply_redaction(self, input_pdf_path, differing_words_data, output_pdf_path):
         temp_pdf_path = "temp_overlay.pdf"
 

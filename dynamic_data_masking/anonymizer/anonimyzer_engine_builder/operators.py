@@ -6,10 +6,8 @@ class OperatorConfigBuilder:
         self.params = {}
 
     def with_param(self, key, value):
-        """Adds a parameter to the operator."""
         self.params[key] = value
         return self
 
     def build(self):
-        """Builds and returns an OperatorConfig object."""
         return OperatorConfig(self.operator_name, self.params)

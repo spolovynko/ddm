@@ -1,7 +1,6 @@
 from collections import defaultdict
 
 class WordDataMapper:
-    """Maps words to their corresponding OCR coordinates."""
     def __init__(self, words_info):
         # Remove empty text entries
         filtered_words_info = [word for word in words_info if word['text'].strip()]

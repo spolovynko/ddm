@@ -4,7 +4,6 @@ class AnonymizerEngineDirector:
     
     @staticmethod
     def build_anonymizer(use_default_operators=False):
-        """Creates an anonymizer engine, with optional predefined operators."""
         builder = AnonymizerEngineBuilder()
 
         if use_default_operators:
@@ -20,7 +19,6 @@ class AnonymizerEngineDirector:
 
     @staticmethod
     def build_custom_anonymizer(custom_operator_name, custom_operator_class, use_default_operators=True):
-        """Creates an anonymizer with a user-defined operator, and optional default operators."""
         builder = AnonymizerEngineBuilder()
 
         # Optionally add default operators

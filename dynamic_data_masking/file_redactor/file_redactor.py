@@ -3,13 +3,11 @@ from dynamic_data_masking.file_redactor.token_filter.word_data_mapper import Wor
 from dynamic_data_masking.file_redactor.token_filter.comparison import DefaultComparisonStrategy, WordDifferenceFinder
 
 class DynamicDataMaskingFileRedactor:
-    """Orchestrates the entire redaction process."""
     def __init__(self, comparison_strategy=None, redaction_strategy="blackout"):
         self.comparison_strategy = comparison_strategy or DefaultComparisonStrategy()
         self.redaction_strategy = RedactionStrategyFactory.get_redaction_strategy(redaction_strategy)
 
     def redact_file(self, input_file_path, extracted_text, masked_text, words_info, output_pdf_path):
-        """Performs the full redaction process."""
         # Step 1: Identify differing words
         difference_finder = WordDifferenceFinder(self.comparison_strategy)
         differing_words = difference_finder.find_differing_words(extracted_text, masked_text)
