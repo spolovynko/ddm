@@ -6,8 +6,8 @@ from dynamic_data_masking.file_processor.image_processor import ImageTextProcess
 class PDFProcessor(ContentExtractor):
     """Handles PDF processing, extracting text and word coordinates."""
 
-    def __init__(self, file_path, language, resolution):
-        super().__init__(file_path, language, resolution)
+    def __init__(self, file_path, language, resolution, ocr_config):
+        super().__init__(file_path, language, resolution, ocr_config)
         self.text_processor = ImageTextProcessor()
         self.coord_processor = ImageCoordinateProcessor()
 
@@ -21,7 +21,7 @@ class PDFProcessor(ContentExtractor):
                 image = PageToImageConverter.convert(page, resolution=self.resolution)
 
                 # Extract Text
-                page_text = self.text_processor.process(image, lang=self.language)
+                page_text = self.text_processor.process(image, lang=self.language, ocr_config=self.ocr_config)
                 extracted_text += page_text
 
                 # Extract Word Coordinates

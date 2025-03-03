@@ -18,15 +18,15 @@ class ImageProcessor(ABC):
 
 class ImageTextProcessor(ImageProcessor):
     
-    def process(self, image, lang="eng", ocr_config=r'--oem 3 --psm 6'):
+    def process(self, image, lang, ocr_config):
         ocr_config = ocr_config
-        return pytesseract.image_to_string(image, config=ocr_config, lang=lang)
+        return pytesseract.image_to_string(image, lang=lang , config=ocr_config)
 
 
 class ImageCoordinateProcessor(ImageProcessor):
     """Processes an image to extract word coordinates and scales them to the original PDF."""
 
-    def process(self, image, page, page_number, lang="eng"):
+    def process(self, image, page, page_number, lang):
         ocr_data = pytesseract.image_to_data(image, output_type=Output.DICT, lang=lang)
         words_info = []
 
