@@ -43,10 +43,14 @@ class AnalyzerStep(PipelineStep):
         return data
     
 class AnonymizerStep(PipelineStep):
+
+    def __init__(self, use_default_operators):
+        self.use_default_operators = use_default_operators
+
     def execute(self, data):
         print("ANONYMIZER RUNS")
         anonymizer = DynamicDataMaskingAnonimyzer()
-        masked_text = anonymizer.anonimyze(text=data["text"], analyzer_results=data["analysis_results"])
+        masked_text = anonymizer.anonimyze(text=data["text"], analyzer_results=data["analysis_results"], use_default_operators=self.use_default_operators)
         data["masked_text"] = masked_text
         return data
     
