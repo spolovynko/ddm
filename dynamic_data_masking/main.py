@@ -1,7 +1,7 @@
 import argparse
 
 from dynamic_data_masking.dynamic_data_masking_pipeline.dynamic_data_masking_pipeline import *
-from dynamic_data_masking.dynamic_data_masking_pipeline.mappers import LANG_MAP, CONF_LEVEL_MAP, ANONYMIZER
+from dynamic_data_masking.dynamic_data_masking_pipeline.mappers import LANG_MAP, CONF_LEVEL_MAP, ANALYZER, ANONYMIZER
 
 def main():
     parser = argparse.ArgumentParser(description="Arguments parser for dynamic data masking engine")
@@ -32,6 +32,7 @@ def main():
         )
     )
     pipeline.add_step(AnalyzerStep(
+        from_config_file=ANALYZER[args.analyzer_engine],
         language=args.lang,
         use_predefined=CONF_LEVEL_MAP[args.conf_level]
         )

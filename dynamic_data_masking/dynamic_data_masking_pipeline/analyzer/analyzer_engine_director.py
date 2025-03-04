@@ -9,12 +9,13 @@ class PresidioAnalyzerDirector:
     def __init__(self, builder):
         self.builder = builder
 
-    def construct(self, from_config_file=False, language="en", use_predefined=False):
+    def construct(self, from_config_file, language, use_predefined):
         if from_config_file:
             if use_predefined:
-                print() 
+                print('form config file using C3')
                 config_file = r'dynamic_data_masking\ddm_config\analyzer_config\all-config-C3.yaml'
             else:
+                print('form config file using oly  C4')
                 config_file = r'dynamic_data_masking\ddm_config\analyzer_config\all-config-C4.yaml'
 
             self.builder.set_config_file(config_file)

@@ -93,7 +93,7 @@ recognizer_registry:
   - name: 'HealthRecognizerEn'
     supported_language: 'en'
     supported_entity: 'HEALTH'
-    deny_list: [diabète, hypertension, Allergie, retard, mentale, Amlodipine, handicapé]
+    deny_list: [diabetes, asthma, hypertension, Allergie, retard, mentale, Amlodipine, handicapé]
     deny_list_score: 1
 
   - name: 'HealthRecognizerFr'

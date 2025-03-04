@@ -3,14 +3,16 @@ from dynamic_data_masking.dynamic_data_masking_pipeline.analyzer.analyzer_engine
 
 class DynamicDataMaskingAnalyzer:
     
-    def __init__(self, from_config_file=False, language="en", use_predefined=False, ):
+    def __init__(self, from_config_file, language, use_predefined):
         self.from_config_file = from_config_file
         self.language = language
         self.use_predefined = use_predefined
         
         if self.from_config_file:
+            print('opted for yaml analyzer config')
             self.builder = PresidioAnalyzerEngineProviderBuilder()
         else: 
+            print('opted for code analyzer config')
             self.builder = PresidioAnalyzerBuilder(language=self.language)
 
         self.director = PresidioAnalyzerDirector(self.builder)

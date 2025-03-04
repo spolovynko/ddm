@@ -31,13 +31,14 @@ class FileProcessorStep(PipelineStep):
 
 
 class AnalyzerStep(PipelineStep):
-    def __init__(self, language, use_predefined=False):
+    def __init__(self, from_config_file, language, use_predefined):
         self.language = language
         self.use_predefined = use_predefined
+        self.from_config_file = from_config_file
 
     def execute(self, data):
         print("ANALYZER RUNS")
-        analyzer = DynamicDataMaskingAnalyzer(language=self.language, use_predefined=self.use_predefined)
+        analyzer = DynamicDataMaskingAnalyzer(from_config_file=self.from_config_file,language=self.language, use_predefined=self.use_predefined)
         result = analyzer.analyze_text(text=data["text"])
         data["analysis_results"] = result
         return data
