@@ -1,5 +1,6 @@
 import pdfplumber
 from reportlab.pdfgen import canvas
+from PyPDF2 import PdfWriter, PdfReader
 from dynamic_data_masking.file_redactor.redactor.base_redactor import RedactionStrategy
 
 class BlackoutRedaction(RedactionStrategy):
@@ -23,4 +24,19 @@ class BlackoutRedaction(RedactionStrategy):
                     overlay.rect(x0, page_height - y1, x1 - x0, y1 - y0, fill=1)
 
                 overlay.showPage()
+                print('black out strategy')
+
             overlay.save()
+            print('file saved')
+
+        input_pdf = PdfReader(input_pdf_path)
+        overlay_pdf = PdfReader(temp_pdf_path)
+        writer = PdfWriter()
+
+        for i, page in enumerate(input_pdf.pages):
+            if i < len(overlay_pdf.pages):
+                page.merge_page(overlay_pdf.pages[i])
+            writer.add_page(page)
+            
+        with open(output_pdf_path, "wb") as output_file:
+            writer.write(output_file)

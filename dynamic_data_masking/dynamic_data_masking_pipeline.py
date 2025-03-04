@@ -55,13 +55,14 @@ class AnonymizerStep(PipelineStep):
         return data
     
 class RedactorStep(PipelineStep):
-    def __init__(self, input_file_path, output_pdf_path):
+    def __init__(self, input_file_path, output_pdf_path, redaction_strategy):
         self.input_file_path = input_file_path
         self.output_pdf_path = output_pdf_path
-
+        self.redaction_strategy = redaction_strategy
+        
     def execute(self, data):
         print("REDACTOR RUNS")
-        redactor = DynamicDataMaskingFileRedactor()
+        redactor = DynamicDataMaskingFileRedactor(redaction_strategy=self.redaction_strategy)
         redactor.redact_file(
             input_file_path=self.input_file_path,
             extracted_text=data["text"],

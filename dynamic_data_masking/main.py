@@ -19,6 +19,7 @@ def main():
     parser.add_argument("--anonimyzer_operator", type=str, default='yes', help='type of anonimyzer')
 
     # FILE REDACTOR STEP ARGUMENTS
+    parser.add_argument("--masking_strategy", default="blackout", help="Masking strategy for masking data")
     parser.add_argument("--output_file_path", help="path to where the masked file will be generated")
     args = parser.parse_args()
 
@@ -41,6 +42,7 @@ def main():
     )
 
     pipeline.add_step(RedactorStep(
+        redaction_strategy=args.masking_strategy,
         input_file_path=args.input_file_path, 
         output_pdf_path=args.output_file_path
         )
