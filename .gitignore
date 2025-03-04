@@ -1,0 +1,26 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore Jupyter notebooks
+notebooks/
+
+# Ignore pdf files folder notebooks
+pdf_files/
+
+# Ignore test file
+test_run.py
+
+# Ignore generated PDFs
+pdf_files/
+
+# Ignore logs and temp files
+*.log
+*.tmp
+.DS_Store
