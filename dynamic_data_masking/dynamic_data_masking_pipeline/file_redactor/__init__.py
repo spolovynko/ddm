@@ -1,0 +1,3 @@
+from dynamic_data_masking.dynamic_data_masking_pipeline.file_redactor.file_redactor import DynamicDataMaskingFileRedactor
+
+__all__ = ["DynamicDataMaskingFileRedactor"]

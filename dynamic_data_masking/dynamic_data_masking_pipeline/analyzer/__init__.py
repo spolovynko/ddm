@@ -1,0 +1,3 @@
+from dynamic_data_masking.dynamic_data_masking_pipeline.analyzer.analyzer import DynamicDataMaskingAnalyzer
+
+__all__ = ['DynamicDataMaskingAnalyzer']

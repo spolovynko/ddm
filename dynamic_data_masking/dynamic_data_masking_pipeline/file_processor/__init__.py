@@ -1,0 +1,3 @@
+from dynamic_data_masking.dynamic_data_masking_pipeline.file_processor.file_processor import DynamicDataMaskingFileProcessor
+
+__all__ = ["DynamicDataMaskingFileProcessor"]

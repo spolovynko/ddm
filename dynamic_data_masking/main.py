@@ -1,7 +1,7 @@
 import argparse
 
-from dynamic_data_masking.dynamic_data_masking_pipeline import *
-from dynamic_data_masking.mappers import LANG_MAP, CONF_LEVEL_MAP, ANONYMIZER
+from dynamic_data_masking.dynamic_data_masking_pipeline.dynamic_data_masking_pipeline import *
+from dynamic_data_masking.dynamic_data_masking_pipeline.mappers import LANG_MAP, CONF_LEVEL_MAP, ANONYMIZER
 
 def main():
     parser = argparse.ArgumentParser(description="Arguments parser for dynamic data masking engine")

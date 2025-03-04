@@ -1,0 +1,3 @@
+from dynamic_data_masking.dynamic_data_masking_pipeline.file_processor.content_extractor.content_extractor import ContentExtractor
+
+__all__ = ["ContentExtractor"]

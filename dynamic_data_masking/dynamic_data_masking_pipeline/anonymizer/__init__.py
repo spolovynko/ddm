@@ -1,0 +1,3 @@
+from dynamic_data_masking.dynamic_data_masking_pipeline.anonymizer.anonymizer import DynamicDataMaskingAnonimyzer
+
+__all__ = ["DynamicDataMaskingAnonimyzer"]
